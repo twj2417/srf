@@ -1,0 +1,1 @@
+from .data_func_graph import data_func_graph_genrator

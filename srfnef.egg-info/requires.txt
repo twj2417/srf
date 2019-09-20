@@ -1,0 +1,11 @@
+scipy
+matplotlib
+h5py
+click
+numpy
+tqdm
+numba
+attr
+attrs
+pypandoc
+dxl-learn

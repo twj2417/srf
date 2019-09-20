@@ -1,0 +1,125 @@
+# Application Document for `SRFNEF` for Recon Tasks 
+
+
+## `JSON` file example
+A recon application reference `json` file would be like this, namely `recon.json`
+
+```json
+{
+    "n_iter": 15,
+    "image_config": {
+        "shape": [
+            200,
+            200,
+            200
+        ],
+        "center": [
+            0.0,
+            0.0,
+            0.0
+        ],
+        "size": [
+            410.0,
+            410.0,
+            410.0
+        ]
+    },
+    "scanner": {
+        "inner_radius": 424.5,
+        "outer_radius": 444.5,
+        "nb_rings": 4,
+        "nb_blocks_per_ring": 48,
+        "gap": 0.0,
+        "blocks": {
+            "size": [
+                20.0,
+                53.3,
+                53.3
+            ],
+            "shape": [
+                1,
+                13,
+                13
+            ],
+            "interval": [
+                0,
+                0,
+                0
+            ]
+        },
+        "tof": null,
+        "center": [
+            0.0,
+            0.0,
+            0.0
+        ]
+    },
+    "listmode": "/mnt/nfs/users/minghao/data/mct_jas_water_cold_1_3_0_1e7_dt_1000ns_10s/listmode_only_true_trans.hdf5",
+    "atten_corr": {
+                "u_map": {
+                "data": "/mnt/nfs/users/minghao/data/mct_jas_water_1_3_1e7_dt_1000ns_10s/umap_r100_len220_d1.hdf5",
+                "center": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "size": [
+                    400.0,
+                    400.0,
+                    500.0
+                ]
+            }
+        },
+    "scatter_corr": null,
+    "psf_corr": {
+        "pnt_img_path": "/mnt/nfs/users/minghao/data/mct_point_source/point_images/",
+        "deconv": null
+    },    
+    "emap": null
+}
+```
+
+There are something needed to be noticed:
+- Some of fields in the `json` above are in path form, e.g. 
+`"/mnt/nfs/users/minghao/data/mct_jas_water_cold_1_3_0_1e7_dt_1000ns_10s/listmode_only_true_trans.hdf5"`.
+This is a full storage of `listmode` in srfnef in a `.hdf5` file.
+- The other `path`ed field after a `data` attribute name, e.g., 
+```json
+"atten_corr": {
+    "u_map": {
+    "data": "/mnt/nfs/users/minghao/data/mct_jas_water_1_3_1e7_dt_1000ns_10s/umap_r100_len220_d1.hdf5",
+    ...
+        }
+    }
+```
+These `.hdf5` files stored the `data` values in these objects. In fact, this should be the 
+standard storge strategy. The strategy above who stores the full object in one `.hdf5` file 
+regards convenience. 
+
+
+## A full reconstruction description
+A full reconstruction can be described by the above `json`, with:
+- MLEM recon method
+- siddon projector and backprojector by default
+- attenuation correction
+- PSF correction
+
+Some of the necessary functions are not integrated yet. However, their fields are already placed.:
+- TOF reconstruction
+- Scattering correction
+
+Some of the functions might be added lately, e.g.:
+- distributed strategy
+- multi-bed imageing
+- motion correction 
+
+## Recon CMD
+
+```bash
+srfnef.recon_full recon.json -o [out_dir]
+```
+this will read the `recon.json` for reconstruction parameters and do recon. Both the Recon results 
+and further results (documents) would be stored in `[out_dir]`
+
+
+

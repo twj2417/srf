@@ -1,0 +1,11 @@
+[console_scripts]
+srfnef.extract_listmode = srfnef.app.app_extract_listmode:extract_listmode
+srfnef.recon_full = srfnef.app.app_recon_full:recon_full
+srfnef.recon_full_cylindrical = srfnef.app.app_recon_full_cylindrical:recon_full
+srfnef.recon_simple = srfnef.app.app_recon_simple:recon_simple
+srfnef.recon_with_scatter = srfnef.app.app_recon_full:recon_with_scatter
+srfnef.test_all = srfnef.app.app_test_full:test_full
+srfnef.test_all_tof = srfnef.app.app_test_full_tof:test_full_tof
+srfnef.test_with_scatter = srfnef.app.app_test_full:test_with_scatter
+srfnef.test_with_scatter_tof = srfnef.app.app_test_full_tof:test_with_scatter_tof
+
